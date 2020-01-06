@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Singapore District Map Example</title>
+    <link rel="stylesheet" href="../bower_components/leaflet/dist/leaflet.css">
+  </head>
+  <style type="text/css">
+    .leaflet-container {
+      background-color: white;
+    }
+    .sg-district-map-popup .leaflet-popup-content-wrapper {
+      border-radius: 0px;
+    }
+  </style>
+  <body ng-app="test" ng-controller="MainCtrl">
+    <section>
+      <sg-district-map data-selected="selected"/>
+    </section>
+    <div style="text-align: center; font-family: monospace">
+      {{ selected }}
+    </div>
+
+    <script type="text/javascript" src="../bower_components/leaflet/dist/leaflet.js"></script>
+    <script type="text/javascript" src="../bower_components/angular/angular.min.js"></script>
+    <script type="text/javascript" src="../dist/ng-sg-district-map.js"></script>
+    <script type="text/javascript">
+      angular
+        .module('test', ['sgDistrictMap'])
+        .config(function(sgDistrictMapStyleProvider) {
+          sgDistrictMapStyleProvider.setHighlightStyle({
+            fillColor: "#777"
+          });
+          sgDistrictMapStyleProvider.setHoverStyle({
+            fillColor: "#DDD"
+          });
+          sgDistrictMapStyleProvider.setShowPopup(true);
+        })
+        .controller('MainCtrl', ['$scope', function($scope) {
+          $scope.selected = {};
+        }]);
+    </script>
+  </body>
+</html>
