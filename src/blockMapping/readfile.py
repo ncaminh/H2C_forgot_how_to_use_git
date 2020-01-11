@@ -35,7 +35,7 @@ def extract_data_from_file(filename, file_type, **kwargs):
         else:
             df[main_disease] = df.apply(lambda row : insert_main_columns(row, diseases_mapping[main_disease]), axis=1);
 
-    diseaseList = df.columns[-8:]
+    diseaseList = df.columns[10:]
 
     table = df.pivot_table(values=diseaseList, index=['Planning Area', 'Sub Zone'], aggfunc="count");
     result = {
