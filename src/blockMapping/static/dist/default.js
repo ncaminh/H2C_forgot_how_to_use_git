@@ -287,19 +287,16 @@
                                         i.showPopup&&this.openPopup(), r.setStyle(i.hoverStyle)
                                     }
                                     ), r.on("mouseout", function(e) {
-                                        o.properties.selected?r.setStyle(i.highlightStyle): r.setStyle(i.defaultStyle)
+                                        this.closePopup(), r.setStyle(i.defaultStyle)
                                     }
                                     ), r.on("click", function(a) {
                                         this.closePopup(), o.properties.selected=!o.properties.selected, r.setStyle(i.highlightStyle), e(function() {
-                                            if (o.properties.selected) {
+                                            if (t.selectedDistricts[name] != o.properties.name) {
                                                 t.selectedDistricts= {
-                                                name: o.properties.name
+                                                    name: o.properties.name
                                                 };
-
-                                                
                                                 create_table(o.properties.code, o.properties.name);
-                                            }
-                    
+                                            } 
                                         },
                                         0)
                                     }

@@ -5,7 +5,7 @@
 	transform: translate(-50%, -50%) scale(0);
 	transition: 200ms ease-in-out;
 	border: 1px solid black;
-	z-index: 10;
+	z-index: 1000;
 	background-color: white;
 }
 
@@ -47,11 +47,69 @@
 	top: 0;
 	right: 0;
 	bottom: 0;
-	background-color: rgba(0, 0, 0, .5);
+	background-color: rgba(0, 0, 0, 0.5);
 	pointer-events: none; 
 }
 
 #overlay.active {
 	opacity: 1;
 	pointer-events: all;
+}
+
+.sg-district-map-popup .leaflet-popup-content-wrapper {
+  border-radius: 10px;
+}
+
+
+#my_map {
+  width: 30vw;
+  height: auto;
+  margin: 0vw 5vw 5vw 5vw;
+}
+
+#my_table {
+  margin: 0vw 5vw 5vw 5vw;
+}
+
+body {
+	display: block;
+}
+
+main {
+	display: grid;
+	grid-template-columns: 20% 50% 30%;
+}
+
+
+header {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 30px;
+	background-color: rgba(34, 167, 240, 1);
+	margin-bottom: 5vh;
+}
+
+li a {
+	text-decoration: none;
+	padding: 9px 25px;
+}
+
+.nav_links {
+	list-style: none;
+}
+
+.nav_links li {
+	display: inline-block;
+	padding: 0 20px;
+}
+
+.nav_links li a {
+	transition: all 0.3s ease 0s;
+}
+
+.nav_links li a:hover {
+	background-color: rgba(0, 136, 169,1);
+	border: none;
+	border-radius: 10px;
 }
