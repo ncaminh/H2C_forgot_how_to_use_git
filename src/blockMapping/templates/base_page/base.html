@@ -5,13 +5,30 @@
 <html>
 <head>
 	<meta charset="utf-8">
-	<title>Dashboard</title>
-	<!-- <link rel="stylesheet" href="{% static 'own/own.css' %}"> -->
+    <title>Singapore District Map Exampleaaaaaaa</title>
+    <link rel="stylesheet" href="{% static 'own/style.css' %}">
+    <link rel="stylesheet" href="{% static 'bower_components/leaflet/dist/leaflet.css' %}">
+    <script defer src="{% static 'own/script_map.js' %}"></script>
 </head>
-<body>	
+<body>
+	<header>
+      <div>&times;</div>
+      <nav class="nav_links">
+        <ul>
+          <li><a href="/map">Map</a></li>
+          <li><a href="/upload">Upload</a></li>
+        </ul>
+      </nav>
+      <div>&times;</div>
+    </header>
+
+
+
 	{% block content %}
-	replace me
-	{% endblock content %}
+	{% endblock %}
 
 </body>
+
+{% block script %}
+{% endblock %}
 </html>

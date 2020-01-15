@@ -1,101 +1,81 @@
+{% extends 'base_page/base.html' %}
 {% load static %}
 
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <title>Singapore District Map Example</title>
-    <link rel="stylesheet" href="{% static 'own/style.css' %}">
-    <link rel="stylesheet" href="{% static 'bower_components/leaflet/dist/leaflet.css' %}">
-    <script defer src="{% static 'own/script_map.js' %}"></script>
- 
-  </head>
-  
-  <body>
-    <header>
-      <div>&times;</div>
-      <nav class="nav_links">
-        <ul>
-          <li><a href="#">Map</a></li>
-          <li><a href="#">Upload</a></li>
-        </ul>
-      </nav>
-      <div>&times;</div>
-    </header>
-
-    <div ng-app="test" ng-controller="MainCtrl">
-      <main>
-        <div id="disease_choices">
-          <ul>
-            <li><label><input type="checkbox" name="main-disease" value="Mental Health"> Mental Health</label></li>
-            <li><label><input type="checkbox" name="main-disease" value="Neurology"> Neurology</label></li>
-            <li><label><input type="checkbox" name="main-disease" value="Urology"> Urology</label></li>
-            <li><label><input type="checkbox" name="main-disease" value="Cardiovascular Disease"> Cardiovascular Disease</label></li>
-            <li><label><input type="checkbox" name="main-disease" value="Renal"> Renal</label></li>
-            <li><label><input type="checkbox" name="main-disease" value="Respiratory"> Respiratory</label></li>
-            <li><label><input type="checkbox" name="main-disease" value="Orthopaedics"> Orthopaedics</label></li>
-            <li><label><input type="checkbox" name="main-disease" value="Diabetes"> Diabetes</label></li>
-          </ul>
-        </div>
-        
-
-        <!-- Map -->
-        <div id="my_map">
-          <section>
-            <sg-district-map data-selected="selected"/>
-          </section>
-        </div>
-        <!-- Map end-->
-
-        <!-- Table -->
-        <div id="my_table">
-          <div id="table_place">
-          </div>
-        </div>
-    	</main>
-      <button data-modal-target="#modal" onclick="expandTable()">Click me to expand table</button>
-      <div class="modal" id="modal">
-        <div class="modal-header">
-          <div class="title">Example</div>
-          <button data-close-button class="close-button">&times;</button>
-        </div>
-        <div class="modal-body" id="modal-body">
-        </div>
-      </div>
-      <div id="overlay"></div>
+{% block content %}
+<div ng-app="test" ng-controller="MainCtrl">
+  <main>
+    <div id="disease_choices">
+      <ul>
+        <li><label><input type="checkbox" name="main-disease" value="Mental Health"> Mental Health</label></li>
+        <li><label><input type="checkbox" name="main-disease" value="Neurology"> Neurology</label></li>
+        <li><label><input type="checkbox" name="main-disease" value="Urology"> Urology</label></li>
+        <li><label><input type="checkbox" name="main-disease" value="Cardiovascular Disease"> Cardiovascular Disease</label></li>
+        <li><label><input type="checkbox" name="main-disease" value="Renal"> Renal</label></li>
+        <li><label><input type="checkbox" name="main-disease" value="Respiratory"> Respiratory</label></li>
+        <li><label><input type="checkbox" name="main-disease" value="Orthopaedics"> Orthopaedics</label></li>
+        <li><label><input type="checkbox" name="main-disease" value="Diabetes"> Diabetes</label></li>
+      </ul>
     </div>
-  </body>
+    
 
-  <script type="text/javascript">
-    var current_dist = "";
-    const json_file = "{{json_info|escapejs}}";
-    const mapping_info = "{{mapping_info|escapejs}}";
-    const json_dict_full =  JSON.parse(json_file);
-    const mapping_dict = JSON.parse(mapping_info);
-    var choices = {};
+    <!-- Map -->
+    <div id="my_map">
+      <section>
+        <sg-district-map data-selected="selected"/>
+      </section>
+    </div>
+    <!-- Map end-->
 
-    const choices_selector = document.getElementById('disease_choices');
-    var all_diseases = choices_selector.getElementsByTagName('input');
-  </script>
+    <!-- Table -->
+    <div id="my_table">
+      <div id="table_place">
+      </div>
+    </div>
+	</main>
+  <button data-modal-target="#modal" onclick="expandTable()">Click me to expand table</button>
+  <div class="modal" id="modal">
+    <div class="modal-header">
+      <div class="title">Example</div>
+      <button data-close-button class="close-button">&times;</button>
+    </div>
+    <div class="modal-body" id="modal-body">
+    </div>
+  </div>
+  <div id="overlay"></div>
+</div>
+{% endblock %}
+
+{% block script %}
+<script type="text/javascript">
+  var current_dist = "";
+  const json_file = "{{json_info|escapejs}}";
+  const mapping_info = "{{mapping_info|escapejs}}";
+  const json_dict_full =  JSON.parse(json_file);
+  const mapping_dict = JSON.parse(mapping_info);
+  var choices = {};
+
+  const choices_selector = document.getElementById('disease_choices');
+  var all_diseases = choices_selector.getElementsByTagName('input');
+</script>
 
 
-	<script type="text/javascript" src="{% static 'bower_components/leaflet/dist/leaflet.js' %}"></script>
-  <script type="text/javascript" src="{% static 'bower_components/angular/angular.min.js' %}"></script>
-  <script type="text/javascript" src="{% static 'dist/default.js' %}"></script>
-  <script type="text/javascript">
-    angular
-      .module('test', ['sgDistrictMap'])
-      .config(function(sgDistrictMapStyleProvider) {
-        sgDistrictMapStyleProvider.setHighlightStyle({
-          fillColor: "#0083bb"
-        });
-        sgDistrictMapStyleProvider.setHoverStyle({
-          fillColor: "#DDD"
-        });
-        sgDistrictMapStyleProvider.setShowPopup(true);
-      })
-      .controller('MainCtrl', ['$scope', function($scope) {
-        $scope.selected = {};
-      }]);
-  </script>
-</html>
+<script type="text/javascript" src="{% static 'bower_components/leaflet/dist/leaflet.js' %}"></script>
+<script type="text/javascript" src="{% static 'bower_components/angular/angular.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'dist/default.js' %}"></script>
+<script type="text/javascript">
+  angular
+    .module('test', ['sgDistrictMap'])
+    .config(function(sgDistrictMapStyleProvider) {
+      sgDistrictMapStyleProvider.setHighlightStyle({
+        fillColor: "#0083bb"
+      });
+      sgDistrictMapStyleProvider.setHoverStyle({
+        fillColor: "#DDD"
+      });
+      sgDistrictMapStyleProvider.setShowPopup(true);
+    })
+    .controller('MainCtrl', ['$scope', function($scope) {
+      $scope.selected = {};
+    }]);
+</script>
+{% endblock %}

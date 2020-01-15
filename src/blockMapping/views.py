@@ -35,3 +35,6 @@ def upload_file_view(request, *args, **kwargs):
             'form': form,
         }
     return render(request, 'upload_page/upload.html', {'form': form});
+
+def error_404_view(request):
+    return render(request, 'error_page/error_404.html', {})
