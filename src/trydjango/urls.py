@@ -21,7 +21,7 @@ from pages.views import home_view, contact_view, about_view
 
 urlpatterns = [
     path('', include('blockMapping.urls')),
-	path('', home_view, name='home'),
+    path('', home_view, name='upload'),
     path('admin/', admin.site.urls),
 	path('home/', home_view, name='home'),
 ]
